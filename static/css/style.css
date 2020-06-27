@@ -1,0 +1,33 @@
+.mytitle{
+  font-size: 930%
+}
+
+.marginleft{
+  margin-left: 240px;
+}
+
+.logo{
+  margin-left: 190px;
+}
+
+.subtitle{
+  font-family: 'auntre';
+  text-align: center;
+}
+
+.mycart{
+  font-size: 120%
+}
+
+.mycartsubtitle{
+  font-size: 120%
+}
+
+.mainsection{
+  padding-top: 0%;
+}
+
+.myborder{
+  padding-top: 10px;
+  border-radius: 5%;
+}

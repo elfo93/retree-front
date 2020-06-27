@@ -1,0 +1,36 @@
+{
+  "name": "retree-front",
+  "version": "1.0.0",
+  "description": "My first-class Nuxt.js project",
+  "author": "elvira",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/firebase": "^6.0.1",
+    "bootstrap": "^4.1.3",
+    "bootstrap-vue": "^2.0.0",
+    "core-js": "2.6.10",
+    "firebase": "^7.15.0",
+    "jwt-decode": "^2.2.0",
+    "nouislider": "^14.5.0",
+    "nuxt": "^2.0.0",
+    "nuxt-vue-material": "^1.2.0",
+    "v-tooltip": "^2.0.3",
+    "vue-browser-geolocation": "^1.8.0",
+    "vue-clickaway": "^2.2.2",
+    "vue-lazyload": "^1.3.3",
+    "vue-loader": "15.9.2",
+    "vue2-google-maps": "^0.10.7"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2"
+  }
+}
