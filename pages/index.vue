@@ -3,37 +3,13 @@
 
     <div class="section page-header header-filter" :style="headerStyle">
       <div class="container">
-        <div class="md-layout">
+        <div class="md-layout row">
           <div
             class="md-layout-item md-size-50 md-small-size-70 md-xsmall-size-100"
           >
-            <h1 class="title">Your Story Starts With Us.</h1>
-            <h4>
-              Every landing page needs a small description after the big bold
-              title, that's why we added this text here. Add here all the
-              information that can make you or your product create the first
-              impression.
-            </h4>
+            <h1 class="title">Find your green point</h1>
 
             <Map/>
-
-             <!-- <div>
-                <div v-if="$store.state.auth">
-                  <p>
-                    You are authenticated. You can see the
-                    <NuxtLink to="/greenMarket">
-                      secret page
-                    </NuxtLink>!
-                  </p>
-                </div>
-                <p v-else>
-                  Please
-                  <NuxtLink to="/login">
-                    login
-                  </NuxtLink>.
-                </p>
-              </div> -->
-
           </div>
         </div>
       </div>

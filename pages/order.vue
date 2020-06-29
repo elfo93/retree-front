@@ -15,10 +15,18 @@
 
         </div>
 
-        <div class="section section-examples">
+
+      <div class="section section-examples">
         <div class="container text-center">
 
+        </div>
+      </div>
 
+
+
+
+        <div class="section section-examples">
+        <div class="container text-center">
 
         </div>
       </div>
@@ -33,8 +41,28 @@
 
 import Cart from '@/components/Cart'
 export default {
+  data(){
+    return {
+      orders : {}
+    }
+  },
   components:{
     Cart
+
+  }, mounted: async function(){
+
+    this.listOrder
+
+    let config = {
+          headers: {
+            'Authorization': `Bearer ${window.localStorage.getItem("token")}`
+          }
+        }
+
+    let userId = window.localStorage.getItem("id")
+    const response = await this.$axios.get(`http://localhost:8082/orders/${userId}` , config)
+    this.orders = response.data
+    console.log(this.orders)
   },
   computed: {
     listOrder() {
@@ -50,25 +78,20 @@ export default {
     }
   },
   methods:{
-    addToCart(item) {
-      this.$store.commit("addToCart", item)
-    },
 
-    // async sendOrder(){
-    //   console.log(this.listOrder)
-    //   // como vincular el pedido con el user ??
-    //     let config = {
-    //        headers: {'Authorization': `Bearer ${window.localStorage.getItem("token")}`
-    //           }
-    //     }
-    //     try {
-    //       let response = await this.$axios.post("http://localhost:8082/orders", this.listOrder , config)
-    //       this.$router.push('/order')
-    //     } catch(err) {
-    //       alert('tienes que registrarte para poder comprar :)')
-    //       console.log('no se conecta')
-    //     }
-    // }
+    async sendOrder(){
+
+        let config = {
+           headers: {'Authorization': `Bearer ${window.localStorage.getItem("token")}`}
+        }
+        try {
+          let response = await this.$axios.post("http://localhost:8082/orders", this.listOrder , config)
+          this.$router.push('/order')
+        } catch(err) {
+          alert('tienes que registrarte para poder comprar :)')
+          console.log('no se conecta')
+        }
+    }
 
   },
 }

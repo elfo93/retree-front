@@ -11,7 +11,7 @@
              <md-field class="md-form-group md-layout" slot="inputs">
 
                 <md-icon>face</md-icon>
-                <div class="col-5">
+                <div class="col-5 mymargin">
                   <md-input class="md-layout-item" v-model="firstname" type="text"></md-input>
                   <label >First Name</label>
                 </div>

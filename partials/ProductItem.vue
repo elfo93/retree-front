@@ -1,6 +1,6 @@
 <template>
 
-              <md-card class="md-card border myborder">
+              <md-card class="md-card border myborder mymargin">
 
                 <div class="md-card-image">
                    <img class="myborder"  :src="product.image" style="max-height: 30rem">

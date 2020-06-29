@@ -1,45 +1,49 @@
 <template>
- <md-toolbar class="md-transparent md-absolute">
+ <md-toolbar class="md-transparent md-absolute justify-content-between">
               <div class="md-toolbar-row">
-                <div class="md-toolbar-section-start">
-                  <a class="" href="/">
-                    <img src="../static/marca-retree-peque.png" width="150" height="150" class="d-inline-block align-top logo-nav" alt="" loading="lazy">
+                <div>
+                  <a  href="/">
+                    <img src="../static/marca-retree-peque.png" width="130" height="130" class="d-inline-block align-top logo-nav" alt="" loading="lazy">
                   </a>
                 </div>
+
                 <div class="md-toolbar-section-end">
-                  <md-button
-                    class="md-just-icon md-simple md-white md-toolbar-toggle"
-                  >
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </md-button>
 
-                  <div class="md-collapse">
+                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-                    <md-list>
-                      <md-list-item
-                        href="/"
-                      >
+                    <md-list class="align-items-end">
+
+                      <md-list-item href="/">
                         <i class="material-icons">home</i>
                         <p>Home</p>
                       </md-list-item>
 
-
-                      <md-list-item
-                        href="/greenMarket"
-                      >
+                      <md-list-item href="/greenMarket">
                         <i class="material-icons">eco</i>
                         <p>greenMarket</p>
                       </md-list-item>
 
                       <md-list-item href="/login"
-                      >
+                      v-if="!isAuth">
                       <i class="material-icons">fingerprint</i>
                       <p>login</p>
                       </md-list-item>
 
-                      <li class="md-list-item">
+                      <md-list-item href="/myProfile"
+                      v-if="isAuth" >
+                      <i class="material-icons">face</i>
+                      <p>profile</p>
+                      </md-list-item>
+
+                       <md-list-item href="/login"
+                      v-if="isAuth" @click="logout">
+                      <i class="material-icons">logout</i>
+                      <p>logout</p>
+                      </md-list-item>
+
+                      <md-list-item class="md-list-item" v-if="!isAuth">
                         <a
                           href="javascript:void(0)"
                           class="md-list-item-router md-list-item-container md-button-clean"
@@ -49,16 +53,14 @@
                               >Register</md-button
                             >
                           </div>
-
-                          <md-list-item href="/order" v-if="listOrder.length!==0" class=" md-button md-warning md-round"> <i class="material-icons">shopping_cart</i></md-list-item>
                         </a>
-                      </li>
+                      </md-list-item>
 
                     </md-list>
                   </div>
-                </div>
-              </div>
-            </md-toolbar>
+               </div>
+    </md-toolbar>
+
 </template>
 
 
@@ -69,15 +71,24 @@ export default {
       isAuth: false
     }
   },
+
+  mounted(){
+    this.checkAuth();
+  },
+  methods:{
+    checkAuth(){
+      this.isAuth = window.localStorage.getItem("token")!= null
+    },
+
+    logout(){
+      this.isAuth = window.localStorage.removeItem("token")
+      this.checkAuth()
+      this.$router.push('/login')
+    }
+  },
   computed:{
     listOrder() {
       return this.$store.state.listOrder
-    },
-    checkAuth() {
-      let token = window.localStorage.getItem("token")
-      if(token!==null){
-        this.isAuth = true
-      }
     }
   }
 }

@@ -6,7 +6,7 @@
   >
     <div class="container">
       <div class="copyright">
-        &copy; {{ year }}
+        &copy; elvira pedregal || proyecto DAW  || {{ year }}
       </div>
     </div>
   </footer>

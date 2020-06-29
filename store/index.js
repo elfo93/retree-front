@@ -5,7 +5,7 @@ export const state = () => ({
 export const mutations = {
 
   addItem(state, item) {
-      console.info(item)
+
       let foundIndex = state.listOrder.findIndex((product) => product._id === item._id)
 
       if (foundIndex !== -1){

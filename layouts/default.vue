@@ -23,6 +23,7 @@ export default {
         {id: 2, path: "/login", name: "login"},
         {id: 3, path: "/register", name: "register"},
         {id: 4, path: "/greenMarket", name: "greenMarket"}
+        // {id: 5, path: "/myProfile", name: "profile"}
       ]
     }
   },

@@ -32,7 +32,7 @@
 
           <div class="md-layout md-gutter">
 
-          <ProductItem v-for="product in productFiltered" class="md-layout-item space-between" :key="product._id"  :product="product" @click="addToCart"/>
+          <ProductItem v-for="product in productFiltered" class="md-layout-item space-between mypadding" :key="product._id"  :product="product" @click="addToCart"/>
 
           </div>
 
@@ -126,30 +126,40 @@ export default {
         {label: "otros", slug: "otros"}
       ],
       products : [],
-      leafShow: false
+      leafShow: false,
+      isAuth: false
     };
+  },
+  beforeMount: function(){
+    this.checkAuth()
   },
   mounted: async function(){
     const response = await this.$axios.get("http://localhost:8082/products")
     this.products = response.data
-    console.log(this.products)
     this.leafActive();
     window.addEventListener("resize", this.leafActive);
   },
   methods: {
+    checkAuth(){
+      this.isAuth = window.localStorage.getItem("token")!= null
+    },
+
+    logout(){
+      this.isAuth = window.localStorage.removeItem("token")
+      this.checkAuth()
+      this.$router.push('/login')
+    },
     changeSelectedCategory(slug){
       this.selectedCategory = slug
     },
     addToCart(item) {
-      console.info(item,"Evento")
       this.$store.commit("addItem", item)
     },
     removeItem(item){
       this.$store.commit("removeItem", item)
     },
     async sendOrder(){
-      console.log(this.listOrder)
-      // como vincular el pedido con el user ??
+
         let config = {
            headers: {'Authorization': `Bearer ${window.localStorage.getItem("token")}`
               }
@@ -158,7 +168,7 @@ export default {
           let response = await this.$axios.post("http://localhost:8082/orders", this.listOrder , config)
           this.$router.push('/order')
         } catch(err) {
-          alert('tienes que registrarte para poder comprar :)')
+          alert('Necesitas registrarte para comprar')
           console.log('no se conecta')
         }
     },

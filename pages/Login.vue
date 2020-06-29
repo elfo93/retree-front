@@ -53,7 +53,9 @@ export default {
       password: null
     };
   },
-
+  mounted(){
+   this.checkAuth();
+  },
   methods: {
 
     checkAuth(){
@@ -71,9 +73,8 @@ export default {
 
         const response= await this.$axios.post("http://localhost:8082/auth/login", loginData)
 
-        console.log(response.data)
-
-        window.localStorage.setItem("token", response.data)
+        window.localStorage.setItem("token", response.data.token)
+        window.localStorage.setItem("id", response.data.userId)
 
         this.checkAuth()
         this.$router.push('/greenMarket')
@@ -83,11 +84,7 @@ export default {
         console.log(err.response.data.error)
       }
 
-    },	async logout(){
-    	window.localStorage.removeItem("token")
-      this.checkAuth()
-      this.$router.push('/greenMarket')
-    }
+    },
 
   },
 
